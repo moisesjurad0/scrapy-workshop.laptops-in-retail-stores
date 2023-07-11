@@ -23,8 +23,17 @@ scrapy_laptops_in_retail_stores
 
 ## Main Steps
 
+1. try the shell to obtain values from a response:
+    1. Run: `scrapy shell https://www.oechsle.pe/tecnologia/computo/laptops`
+        1. try selectors
+            1. `x=response.css("div.product.instock")`
+            1. `x[0].attrib['data-name'].get()`
+            1. `x[0].attrib['data-name']`
+        1. keep searching for the right selectors
 1. Add spiders. use this command: `scrapy genspider <spider_name> <start_url>`
     1. run: `scrapy genspider laptopsRipley https://simple.ripley.com.pe/tecnologia/computacion/laptops?source=menu&s=mdco`
     1. run: `scrapy genspider laptopsOechsle https://www.oechsle.pe/tecnologia/computo/laptops`
+1. test spider:
+    1. run: `scrapy crawl laptopsOechsle -o laptops.jsonl`
 1. Add Type
 1. Add Pipeline
