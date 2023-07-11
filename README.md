@@ -30,6 +30,7 @@ scrapy_laptops_in_retail_stores
             1. `x[0].attrib['data-name'].get()`
             1. `x[0].attrib['data-name']`
         1. keep searching for the right selectors
+        1. or run: `view(response)` inside the scrapy shell to open the response in a tmp browser
 1. Add spiders. use this command: `scrapy genspider <spider_name> <start_url>`
     1. run: `scrapy genspider laptopsRipley https://simple.ripley.com.pe/tecnologia/computacion/laptops?source=menu&s=mdco`
     1. run: `scrapy genspider laptopsOechsle https://www.oechsle.pe/tecnologia/computo/laptops`

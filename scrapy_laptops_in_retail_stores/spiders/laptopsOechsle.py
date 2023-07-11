@@ -12,8 +12,11 @@ class LaptopsoechsleSpider(scrapy.Spider):
         for quote in response.css("div.product.instock"):
             yield {
                 "nombre": quote.attrib['data-name'],
-                #"precio": quote.attrib['data-product-price'],
-                #"precio_sin_dcto": quote.attrib['data-product-list-price']
+                # "nombre2": quote.css("div.productImage.prod-img.img_one img").attrib['alt'],
+                # "precio": quote.attrib['data-product-price'],
+                # "precio_sin_dcto": quote.attrib['data-product-list-price']
+                "precio1": quote.css("span.BestPrice::text").get(),
+                "precio2": quote.css("span.ListPrice::text").get(),
             }
 
         yield from response.follow_all(css="a.page-link", callback=self.parse)
