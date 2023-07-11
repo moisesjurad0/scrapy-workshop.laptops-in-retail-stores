@@ -23,6 +23,8 @@ scrapy_laptops_in_retail_stores
 
 ## Main Steps
 
-1. Add spider.
+1. Add spiders. use this command: `scrapy genspider <spider_name> <start_url>`
+    1. run: `scrapy genspider laptopsRipley https://simple.ripley.com.pe/tecnologia/computacion/laptops?source=menu&s=mdco`
+    1. run: `scrapy genspider laptopsOechsle https://www.oechsle.pe/tecnologia/computo/laptops`
 1. Add Type
 1. Add Pipeline
