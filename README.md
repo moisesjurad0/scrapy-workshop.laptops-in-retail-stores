@@ -13,4 +13,7 @@ scrapy_laptops_in_retail_stores
     1. ~~pprint~~ => this is not necessary. pprint is part of the Python standard library
 1. and install it with `pip install -r requirements.txt`
 
-scrapy_laptops_in_retail_stores
+## Steps
+
+1. Create a Project => `scrapy startproject scrapy_laptops_in_retail_stores`
+    1. This will create a tutorial directory and contents.
