@@ -1,12 +1,13 @@
 import scrapy
 from urllib.parse import urljoin
+import pprint as pp
 
 
 class LaptopsoechsleSpider(scrapy.Spider):
     name = "laptopsOechsle"
     allowed_domains = ["www.oechsle.pe"]
     start_urls = [
-        "https://www.oechsle.pe/tecnologia/computo/laptops?page=1",
+        # "https://www.oechsle.pe/tecnologia/computo/laptops?page=1",
         "https://www.oechsle.pe/tecnologia/computo/laptops-gamers?page=1",
     ]
 
@@ -34,17 +35,27 @@ class LaptopsoechsleSpider(scrapy.Spider):
 
     def get_next_page_url(self, response):
         # string1='?&optionOrderBy=OrderByScoreDESC&O=OrderByScoreDESC&page='
-
-        # Logic to determine the URL for the next page
         current_url = response.url
         current_page_number = int(current_url.split('=')[-1])
-        current_url_without_page = current_url.split(
-            '=')[0]  # Remove "page1" from the URL
-
+        current_url_without_page = f"{current_url.split('=')[0]}="
         next_page_number = current_page_number + 1
         # next_page_url = urljoin(current_url, f'{string1}{next_page_number}')
-        next_page_url = urljoin(
-            current_url_without_page,
-            f'={next_page_number}')
+        next_page_url = f'{current_url_without_page}{next_page_number}'
+
+        print('-----------------------------------------------------------')
+        print('')
+        print('')
+        print('')
+        print('PRINT-BEGIN')
+        pp.pprint(f"current_url=>{current_url}")
+        pp.pprint(f"current_page_number=>{current_page_number}")
+        pp.pprint(f"current_url_without_page=>{current_url_without_page}")
+        pp.pprint(f"next_page_number=>{next_page_number}")
+        pp.pprint(f"next_page_url=>{next_page_url}")
+        print('PRINT-END')
+        print('')
+        print('')
+        print('')
+        print('-----------------------------------------------------------')
 
         return next_page_url
