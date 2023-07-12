@@ -27,6 +27,7 @@ scrapy_laptops_in_retail_stores
     1. Run: `scrapy shell https://www.oechsle.pe/tecnologia/computo/laptops`
     1. Run: `scrapy shell https://www.oechsle.pe/tecnologia/computo/laptops?page=1`
     1. Run: `scrapy shell https://www.oechsle.pe/tecnologia/computo/laptops-gamers?page=4`
+    1. Run: `scrapy shell https://simple.ripley.com.pe/tecnologia/computacion-gamer/laptops-gamer?source=menu&s=mdco`
         1. try selectors
             1. `x=response.css("div.product.instock")`
             1. `x[0].attrib['data-name'].get()`
