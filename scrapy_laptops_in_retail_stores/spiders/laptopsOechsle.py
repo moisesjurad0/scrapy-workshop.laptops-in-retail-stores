@@ -1,22 +1,30 @@
 import scrapy
 from urllib.parse import urljoin
 from scrapy_splash import SplashRequest
-
+import pprint as pp
 
 class LaptopsoechsleSpider(scrapy.Spider):
-    name = "laptopsOechsle"    
+    name = "laptopsOechsle"
 
     def start_requests(self):
         urls = [
             # "https://www.oechsle.pe/tecnologia/computo/laptops?page=1",
-            "   ",
+            "https://www.oechsle.pe/tecnologia/computo/laptops-gamers?page=1",
+            "https://www.oechsle.pe/tecnologia/computo/laptops-gamers?page=2",
+            "https://www.oechsle.pe/tecnologia/computo/laptops-gamers?page=3",
+            "https://www.oechsle.pe/tecnologia/computo/laptops-gamers?page=4",
+            "https://www.oechsle.pe/tecnologia/computo/laptops-gamers?page=5",
         ]
-        for url in self.start_urls:
-            yield SplashRequest(url, callback=self.parse, args={'wait': 5})
-
+        retorno = []
+        for url in urls:
+            retorno.append(
+                SplashRequest(url, callback=self.parse, args={'wait': 5})
+            )
+        pp.pprint(retorno)
+        return retorno
 
     def parse(self, response):
-        
+
         for quote in response.css("div.product.instock"):
             yield {
                 "nombre": quote.attrib['data-name'],
