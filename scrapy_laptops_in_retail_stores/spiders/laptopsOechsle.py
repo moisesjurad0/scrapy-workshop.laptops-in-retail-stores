@@ -8,8 +8,6 @@ class LaptopsoechsleSpider(scrapy.Spider):
     start_urls = [
         "https://www.oechsle.pe/tecnologia/computo/laptops?page=1",
         "https://www.oechsle.pe/tecnologia/computo/laptops-gamers?page=1",
-        # "https://www.oechsle.pe/tecnologia/computo/laptops",
-        # "https://www.oechsle.pe/tecnologia/computo/laptops?&optionOrderBy=OrderByScoreDESC&O=OrderByScoreDESC&page=2"
     ]
 
     def parse(self, response):
