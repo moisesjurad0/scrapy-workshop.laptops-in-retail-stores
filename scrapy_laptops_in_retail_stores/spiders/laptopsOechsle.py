@@ -17,11 +17,12 @@ class LaptopsoechsleSpider(scrapy.Spider):
     def parse(self, response):
         for quote in response.css("div.product.instock"):  # .hideTagPrice
             yield {
+                "origin": "oechsle",
                 "name": quote.attrib['data-name'],
                 # "nombre2": quote.css("div.productImage.prod-img.img_one img").attrib['alt'],
                 # "precio": quote.attrib['data-product-price'],
                 # "precio_sin_dcto": quote.attrib['data-product-list-price']
-                "price-online": quote.css("span.BestPrice::text").get(),
+                "price-offered": quote.css("span.BestPrice::text").get(),
                 "price-with-Card": None,
                 "price-regular": quote.css("span.ListPrice::text").get(),
             }
