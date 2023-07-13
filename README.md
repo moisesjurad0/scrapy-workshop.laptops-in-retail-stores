@@ -40,5 +40,7 @@ scrapy_laptops_in_retail_stores
 1. test spider:
     1. run: `scrapy crawl laptopsOechsle -o laptops.jsonl`
     1. run: `scrapy crawl laptopsRipley -o laptops.jsonl`
+    1. run: `scrapy crawl laptopsJuntoz -o laptops.jsonl`
+    1. run: `scrapy crawl laptopsJuntoz laptopsRipley laptopsOechsle -o laptops.jsonl`
 1. Add Type
 1. Add Pipeline

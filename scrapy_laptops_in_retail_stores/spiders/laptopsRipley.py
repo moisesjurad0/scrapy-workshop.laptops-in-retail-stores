@@ -3,7 +3,8 @@ import scrapy
 
 class LaptopsripleySpider(scrapy.Spider):
     name = "laptopsRipley"
-    allowed_domains = ["simple.ripley.com.pe"]
+    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
+    # allowed_domains = ["simple.ripley.com.pe"]
     start_urls = [
         # "https://simple.ripley.com.pe/tecnologia/computacion-gamer/laptops-gamer",
         # "https://simple.ripley.com.pe/tecnologia/computacion-gamer/laptops-gamer?source=menu&s=mdco",
