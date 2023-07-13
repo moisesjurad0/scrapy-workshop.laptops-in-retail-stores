@@ -2,9 +2,11 @@ import scrapy
 from urllib.parse import urljoin
 import pprint as pp
 
+from scrapy_laptops_in_retail_stores.items import Laptop2
+
 
 class LaptopsoechsleSpider(scrapy.Spider):
-    name = "laptopsOechsle"
+    name = "oechsle"
     allowed_domains = ["www.oechsle.pe"]
     start_urls = [
         "https://www.oechsle.pe/tecnologia/computo/laptops-gamers?page=1",
@@ -15,17 +17,15 @@ class LaptopsoechsleSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
-        for quote in response.css("div.product.instock"):  # .hideTagPrice
-            yield {
-                "origin": "oechsle",
-                "name": quote.attrib['data-name'],
-                # "nombre2": quote.css("div.productImage.prod-img.img_one img").attrib['alt'],
-                # "precio": quote.attrib['data-product-price'],
-                # "precio_sin_dcto": quote.attrib['data-product-list-price']
-                "price-offered": quote.css("span.BestPrice::text").get(),
-                "price-with-Card": None,
-                "price-regular": quote.css("span.ListPrice::text").get(),
-            }
+        for i in response.css("div.product.instock"):  # .hideTagPrice
+            item = Laptop2(
+                origin="oechsle",
+                name=i.attrib['data-name'],
+                price_offered=i.css("span.BestPrice::text").get(),
+                price_with_card=None,
+                price_regular=i.css("span.ListPrice::text").get()
+            )
+            yield item
 
         # yield from response.follow_all(css="a.page-link",
         # callback=self.parse)

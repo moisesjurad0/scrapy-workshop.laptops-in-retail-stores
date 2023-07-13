@@ -1,8 +1,10 @@
 import scrapy
 
+from scrapy_laptops_in_retail_stores.items import Laptop2
+
 
 class LaptopsripleySpider(scrapy.Spider):
-    name = "laptopsRipley"
+    name = "ripley"
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
     # allowed_domains = ["simple.ripley.com.pe"]
     start_urls = [
@@ -13,13 +15,13 @@ class LaptopsripleySpider(scrapy.Spider):
     ]
 
     def parse(self, response):
-        for quote in response.css("div.catalog-product-details"):
-            yield {
-                "origin": "ripley",
-                "name": quote.css("div.catalog-product-details__name::text").get(),
-                "price-offered": quote.css("li.catalog-prices__offer-price::text").get(),
-                "price-with-Card": quote.css("li.catalog-prices__card-price::text").get(),
-                "price-regular": quote.css("li.catalog-prices__list-price::text").get(),
-            }
+        for i in response.css("div.catalog-product-details"):
+            item = Laptop2(
+                origin="ripley",
+                name=i.css("div.catalog-product-details__name::text").get(),
+                price_offered=i.css("li.catalog-prices__offer-price::text").get(),
+                price_with_card=i.css("li.catalog-prices__card-price::text").get(),
+                price_regular=i.css("li.catalog-prices__list-price::text").get())
+            yield item
 
         yield from response.follow_all(css="ul.pagination > li > a", callback=self.parse)

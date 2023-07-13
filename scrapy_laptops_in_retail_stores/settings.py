@@ -62,9 +62,11 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "scrapy_laptops_in_retail_stores.pipelines.ScrapyLaptopsInRetailStoresPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   # "scrapy_laptops_in_retail_stores.pipelines.ScrapyLaptopsInRetailStoresPipeline": 300,
+   "scrapy_laptops_in_retail_stores.pipelines.JsonWriterPipeline": 800,
+
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

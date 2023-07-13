@@ -1,8 +1,10 @@
 import scrapy
 
+from scrapy_laptops_in_retail_stores.items import Laptop, Laptop2
+
 
 class LaptopsjuntozSpider(scrapy.Spider):
-    name = "laptopsJuntoz"
+    name = "juntoz"
     allowed_domains = ["juntoz.com"]
     start_urls = [
         # "https://juntoz.com/categorias/tecnologia/computacion/laptops", # normal
@@ -14,13 +16,13 @@ class LaptopsjuntozSpider(scrapy.Spider):
 
     def parse(self, response):
         for i in response.css("div.product-preview-card__wrapper__footer"):
-            yield {
-                "origin": "juntoz",
-                "name": i.css("div.product-preview-card__wrapper__footer__product-name > a::text").get(),
-                "price-offered": i.css("span[jztm-prop='price']::text").get(),
-                "price-with-Card": None,
-                "price-regular": i.css("span[jztm-prop='specialPrice']::text").get(),
-            }
+            item = Laptop2(
+                origin="juntoz",
+                name=i.css("div.product-preview-card__wrapper__footer__product-name > a::text").get(),
+                price_offered=i.css("span[jztm-prop='price']::text").get(),
+                price_with_card=None,
+                price_regular=i.css("span[jztm-prop='specialPrice']::text").get())
+            yield item
 
         # yield from response.follow_all(css="ul.pagination > li > a",
         # callback=self.parse)
