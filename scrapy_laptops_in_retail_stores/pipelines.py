@@ -21,7 +21,8 @@ class JsonWriterPipeline:
     """
 
     def open_spider(self, spider):
-        self.file = open("items.jsonl", "w")
+        self.file = open("items.jsonl", "a")
+        # self.file = open("items.jsonl", "w")
 
     def close_spider(self, spider):
         self.file.close()
