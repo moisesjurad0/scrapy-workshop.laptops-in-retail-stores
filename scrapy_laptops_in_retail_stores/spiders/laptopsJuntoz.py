@@ -12,7 +12,10 @@ class LaptopsjuntozSpider(scrapy.Spider):
         "https://juntoz.com/catalogo?categoryId=995891&top=100&skip=0&orderBy=rating-desc",  # gamer
         "https://juntoz.com/catalogo?categoryId=995878&top=2000&skip=0&orderBy=rating-desc",  # normal
     ]
-    # user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
+    # change the parameter &top
+    # that way you can avoid doing the next page method
+    # if that don't work You need to reverse engineer how..
+    # your page generated this url (from the first image):
 
     def parse(self, response):
         for i in response.css("div.product-preview-card__wrapper__footer"):

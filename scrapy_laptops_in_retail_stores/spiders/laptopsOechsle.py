@@ -27,12 +27,21 @@ class LaptopsoechsleSpider(scrapy.Spider):
             )
             yield item
 
-        # yield from response.follow_all(css="a.page-link",
-        # callback=self.parse)
-
-        # next_page_url = self.get_next_page_url(response)
+        # USE THIS when the NEXT button has a URL attrib of someking
+        # yield from response.follow_all(css="a.page-link", callback=self.parse)
+        
+        next_page_url = self.get_next_page_url(response)                
+        
+        # CALL THIS method to run among all the pages 1,2,3,4,5..156,157,158..
         # if next_page_url:
         #     yield response.follow(next_page_url, callback=self.parse)
+
+        # ***the data loaded in these pages is the same***
+        # recomended solution 1: use scrapy splash or another scraper bases on browser (scrapy by default uses requests)
+        # recomended solution 2: locate APIs to get direct data.
+        
+        # if that don't work You need to reverse engineer how..
+        # your page generated this url (from the first image):
 
     def get_next_page_url(self, response):
         current_url = response.url

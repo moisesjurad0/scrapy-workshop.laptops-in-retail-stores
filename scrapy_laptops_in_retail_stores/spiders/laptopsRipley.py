@@ -24,4 +24,5 @@ class LaptopsripleySpider(scrapy.Spider):
                 price_regular=i.css("li.catalog-prices__list-price::text").get())
             yield item
 
+        # CALLING NEXT PAGE
         yield from response.follow_all(css="ul.pagination > li > a", callback=self.parse)
